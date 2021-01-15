@@ -72,7 +72,7 @@ tab-width 4)
 
 (display-time-mode 1)
 (display-battery-mode 1)
-(elcord-mode)
+;;(elcord-mode)
 (setq elcord-use-major-mode-as-main-icon t)
 (use-package! lsp-jedi
   :hook python-mode
@@ -86,7 +86,7 @@ tab-width 4)
       :nv "f C-r" 'recover-this-file
       :desc "recover current file from autosave")
 
-(add-to-list 'elcord-boring-buffers-regexp-list '"doom")
+;;(add-to-list 'elcord-boring-buffers-regexp-list '"doom")
 
 (setq org-icalendar-store-UID t
       org-icalendar-include-todo "all"
@@ -98,3 +98,6 @@ tab-width 4)
   (message "Exported org-agenda to %s" org-icalendar-combined-agenda-file))
 
 (run-at-time "1 sec" 1800 'export-org-icalendar)
+
+;; (add-to-list 'lsp-file-watch-ignored ' "\\.clangd")
+;; (add-to-list 'lsp-file-watch-ignored ' "\\.ccls-cache")

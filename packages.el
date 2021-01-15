@@ -55,3 +55,4 @@
 (package! elcord)
 (package! realgud-node-inspect)
 (package! lsp-jedi)
+(package! toml-mode)
