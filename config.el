@@ -7,7 +7,7 @@
 ;; Some functionality uses this to identify you, e.g. GPG configuration, email
 ;; clients, file templates and snippets.
 (setq user-full-name "Robin Marchart"
-      user-mail-address "robin.marchart@hotmail.com")
+      user-mail-address "robin.marchart@tum.com")
 
 ;; Doom exposes five (optional) variables for controlling fonts in Doom. Here
 ;; are the three important ones:
@@ -122,6 +122,7 @@
       :map org-mode-map
       :localleader
       :nv "C-t" #'org-toggle-inline-images)
+
 ;; (setq org-latex-inputenc-alist '(("utf8" . "utf8x")))
 (setq doom-font (font-spec :family "Fira Mono"))
 
@@ -130,3 +131,9 @@
         '(("l" "render latex on open" plain "%?" :target (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}
 #+STARTUP: latexpreview
 ") :unnarrowed t))))
+
+(map!
+ :leader
+ :prefix "h"
+ :desc "Run evil tutor"
+ :n "C-T" #'evil-tutor-start)
