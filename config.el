@@ -30,6 +30,7 @@
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
 (setq org-directory "~/notes/")
+(setq org-roam-directory "~/notes/")
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
@@ -54,7 +55,7 @@
 ;; they are implemented.
 
 (setq-default
-tab-width 4)
+ tab-width 4)
 
 (setq undo-limit 80000000
       evil-want-fine-undo t
@@ -74,17 +75,11 @@ tab-width 4)
 (display-battery-mode 1)
 ;;(elcord-mode)
 (setq elcord-use-major-mode-as-main-icon t)
-(use-package! lsp-jedi
-  :hook python-mode
-  :config
-  (with-eval-after-load "lsp-mode"
-    (add-to-list 'lsp-disabled-clients 'pyls)
-    (add-to-list 'lsp-enabled-clients 'jedi)))
 
 (map! :map text-mode-map
       :leader
-      :nv "f C-r" 'recover-this-file
-      :desc "recover current file from autosave")
+      :desc "recover current file from autosave"
+      :n "f C-r" 'recover-this-file)
 
 ;;(add-to-list 'elcord-boring-buffers-regexp-list '"doom")
 
@@ -97,7 +92,41 @@ tab-width 4)
   (org-icalendar-combine-agenda-files)
   (message "Exported org-agenda to %s" org-icalendar-combined-agenda-file))
 
-(run-at-time "1 sec" 1800 'export-org-icalendar)
+;; (run-at-time "1 sec" 1800 'export-org-icalendar)
 
+(after! elfeed
+  (setq elfeed-search-filter "@2-month-ago"))
+
+(map! :leader
+      :desc "Open rss feed"
+      :n "o C-r" 'elfeed)
+(add-hook! 'elfeed-search-mode-hook 'elfeed-update)
+
+
+
+(setq lsp-clients-clangd-args '("-j=4"
+                                "--background-index"
+                                "--clang-tidy"
+                                "--completion-style=detailed"
+                                "--header-insertion=never"
+                                "--header-insertion-decorators=0"))
+(setq lsp-rust-analyzer-cargo-auto-reload t)
+(setq lsp-rust-analyzer-cargo-watch-command "clippy")
+
+;;(setq eglot-rust-server 'rust-analyzer)
 ;; (add-to-list 'lsp-file-watch-ignored ' "\\.clangd")
 ;; (add-to-list 'lsp-file-watch-ignored ' "\\.ccls-cache")
+(setq lsp-enabled-clients nil)
+
+(map! :after org
+      :map org-mode-map
+      :localleader
+      :nv "C-t" #'org-toggle-inline-images)
+;; (setq org-latex-inputenc-alist '(("utf8" . "utf8x")))
+(setq doom-font (font-spec :family "Fira Mono"))
+
+(after! 'org-roam
+  (setq org-roam-capture-templates
+        '(("l" "render latex on open" plain "%?" :target (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}
+#+STARTUP: latexpreview
+") :unnarrowed t))))
