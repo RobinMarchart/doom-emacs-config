@@ -71,3 +71,4 @@
 (package! json-in-place :recipe (:type git
                                  :host github
                                  :repo "RobinMarchart/json-in-place"))
+(package! org-present)

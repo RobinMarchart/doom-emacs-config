@@ -126,9 +126,9 @@
 ;; (setq org-latex-inputenc-alist '(("utf8" . "utf8x")))
 (setq doom-font (font-spec :family "Fira Mono"))
 
-(after! 'org-roam
-  (setq org-roam-capture-templates
-        '(("l" "render latex on open" plain "%?" :target (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}
+(eval-after-load "org-roam"
+  '(setq org-roam-capture-templates
+         '(("l" "render latex on open" plain "%?" :target (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}
 #+STARTUP: latexpreview
 ") :unnarrowed t))))
 
@@ -137,3 +137,26 @@
  :prefix "h"
  :desc "Run evil tutor"
  :n "C-T" #'evil-tutor-start)
+
+(eval-after-load "org-present"
+  '(progn
+     (add-hook 'org-present-mode-hook
+               (lambda () (org-present-big)))
+     (add-hook 'org-present-mode-quit-hook
+               (lambda () (org-present-small)))
+     (define-key org-present-mode-keymap [left] ())
+     (define-key org-present-mode-keymap [right] ())
+     (advice-add 'org-present :before
+                 (lambda (&rest _r)
+                   (flycheck-mode -1)
+                   (org-latex-preview '(64))
+                   (disable-theme doom-theme)
+                   (load-theme 'doom-one-light t)
+                   (org-latex-preview '(16))
+                   (org-display-inline-images)))
+     (advice-add 'org-present-quit :after
+                 (lambda (&rest _r)
+                   (org-latex-preview '(64))
+                   (disable-theme 'doom-one-light)
+                   (load-theme 'doom-horizon t)
+                   (org-latex-preview '(16))))))
