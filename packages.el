@@ -72,3 +72,4 @@
                                  :host github
                                  :repo "RobinMarchart/json-in-place"))
 (package! org-present)
+(package! systemd)
