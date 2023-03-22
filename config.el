@@ -160,3 +160,14 @@
                    (disable-theme 'doom-one-light)
                    (load-theme 'doom-horizon t)
                    (org-latex-preview '(16))))))
+
+(setq ws-butler-trim-predicate (lambda (_beg _end)
+                                 (named-let check-modes ((index ws-butler-global-exempt-modes))
+                                   (if index
+                                       (if (derived-mode-p (car index))
+                                           nil
+                                         (check-modes (cdr index)))
+                                     t))))
+
+(set-email-account! "fs"
+                    '())

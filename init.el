@@ -24,9 +24,9 @@
                                         ; the ultimate code completion backend
  ;;helm              ; the *other* search engine for love and life
  ;;ido               ; the other *other* search engine...
- (ivy +icons +prescient +fuzzy)
+ ;;(ivy +icons +prescient +fuzzy)
                                         ; a search engine for love and life
- ;; (vertico +icons)
+  (vertico +icons)
 
  :ui
  deft                         ; notational velocity for Emacs
@@ -45,7 +45,7 @@
  ophints                ; highlight the region an operation acts on
  (popup +defaults)      ; tame sudden yet inevitable temporary windows
  ;; tabs                   ; an tab bar for Emacs
- treemacs ; a project drawer, like neotree but cooler
+ treemacs               ; a project drawer, like neotree but cooler
  unicode                ; extended unicode support for various languages
  vc-gutter              ; vcs diff in the fringe
  vi-tilde-fringe        ; fringe tildes to mark beyond EOB
@@ -193,3 +193,6 @@
 
 (when noninteractive
   (with-eval-after-load "env.el" (add-to-list 'doom-env-allow "^SSH_")))
+(setq native-comp-deferred-compilation nil)
+(after! (doom-packages straight)
+  (setq straight--native-comp-available t))

@@ -51,7 +51,8 @@
 (package! meson-mode)
 (package! evil-tutor)
 (package! org-fragtog)
-(package! ein)
+(package! org-present)
+(package! systemd)
 (package! elcord)
 (package! toml-mode)
 (package! native-async-rs :recipe (:type git
@@ -71,5 +72,4 @@
 (package! json-in-place :recipe (:type git
                                  :host github
                                  :repo "RobinMarchart/json-in-place"))
-(package! org-present)
-(package! systemd)
+(package! chezmoi)
