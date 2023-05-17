@@ -26,7 +26,7 @@
  ;;ido               ; the other *other* search engine...
  ;;(ivy +icons +prescient +fuzzy)
                                         ; a search engine for love and life
-  (vertico +icons)
+ (vertico +icons)
 
  :ui
  deft                         ; notational velocity for Emacs
@@ -68,7 +68,7 @@
  word-wrap                            ; soft wrapping with language-aware indent
 
  :emacs
- (dired +icons +ranger)          ; making dired pretty [functional]
+ (dired +icons +ranger)  ; making dired pretty [functional]
  electric                ; smarter, keyword-based electric-indent
  (ibuffer +icons)        ; interactive buffer management
  (undo +tree)            ; persistent, smarter undo for your inevitable mistakes
@@ -109,6 +109,7 @@
  upload                               ; map local to remote projects via ssh/ftp
 
  :lang
+ isabelle
  ;;agda              ; types of types of types of types...
  (cc +lsp)                      ; C/C++/Obj-C madness
  ;;clojure           ; java with a lisp
@@ -120,7 +121,7 @@
  ;;(dart +flutter)   ; paint ui and not much else
  ;;elixir            ; erlang done right
  ;;elm               ; care for a cup of TEA?
- emacs-lisp ; drown in parentheses
+ emacs-lisp   ; drown in parentheses
  ;;erlang            ; an elegant language for a more civilized age
  ;;ess               ; emacs speaks statistics
  ;; faust      ; dsp, but you get to keep your soul
@@ -155,7 +156,7 @@
  ;;qt                ; the 'cutest' gui framework ever
  ;;racket            ; a DSL for DSLs
  ;;raku              ; the artist formerly known as perl6
- rest                                   ; Emacs as a REST client
+ rest                  ; Emacs as a REST client
  ;; rst                                    ; ReST in peace
  ;;(ruby +rails)     ; 1.step {|i| p "Ruby is #{i.even? ? 'love' : 'life'}"}
  (rust +lsp)
@@ -177,7 +178,7 @@
 
  :app
  calendar
- (rss +org)     ; emacs as an RSS reader
+ (rss +org)                             ; emacs as an RSS reader
  everywhere
  ;;twitter           ; twitter client https://twitter.com/vnought
  ;; irc               ; how neckbeards socialize

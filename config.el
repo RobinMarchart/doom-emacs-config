@@ -57,7 +57,7 @@
 (setq-default
  tab-width 4)
 
-(setq undo-limit 80000000
+(setq undo-limit 800
       evil-want-fine-undo t
       auto-save-default t
       truncate-string-ellipsis "…"
@@ -72,7 +72,7 @@
 (add-hook! org-mode 'org-fragtog-mode)
 
 (display-time-mode 1)
-(display-battery-mode 1)
+;; (display-battery-mode 1)
 ;;(elcord-mode)
 (setq elcord-use-major-mode-as-main-icon t)
 
@@ -100,6 +100,7 @@
 (map! :leader
       :desc "Open rss feed"
       :n "o C-r" 'elfeed)
+
 (add-hook! 'elfeed-search-mode-hook 'elfeed-update)
 
 
@@ -169,5 +170,10 @@
                                          (check-modes (cdr index)))
                                      t))))
 
-(set-email-account! "fs"
-                    '())
+(map! :map vterm-mode-map :after 'vterm :desc "send next key to vterm" :i "C-y" #'vterm-send-next-key)
+
+(load! "email.el")
+
+(setq isabelle-dir "/home/robin/uni/fds/isabelle-emacs")
+
+(setq lsp-keep-workspace-alive nil)
