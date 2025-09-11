@@ -105,19 +105,19 @@
 
 
 
-(setq lsp-clients-clangd-args '("-j=4"
-                                "--background-index"
-                                "--clang-tidy"
-                                "--completion-style=detailed"
-                                "--header-insertion=never"
-                                "--header-insertion-decorators=0"))
-(setq lsp-rust-analyzer-cargo-auto-reload t)
-(setq lsp-rust-analyzer-cargo-watch-command "clippy")
+;; (setq lsp-clients-clangd-args '("-j=4"
+;;                                 "--background-index"
+;;                                 "--clang-tidy"
+;;                                 "--completion-style=detailed"
+;;                                 "--header-insertion=never"
+;;                                 "--header-insertion-decorators=0"))
+;; (setq lsp-rust-analyzer-cargo-auto-reload t)
+;; (setq lsp-rust-analyzer-cargo-watch-command "clippy")
 
 ;;(setq eglot-rust-server 'rust-analyzer)
 ;; (add-to-list 'lsp-file-watch-ignored ' "\\.clangd")
 ;; (add-to-list 'lsp-file-watch-ignored ' "\\.ccls-cache")
-(setq lsp-enabled-clients nil)
+;; (setq lsp-enabled-clients nil)
 
 (map! :after org
       :map org-mode-map
@@ -174,6 +174,30 @@
 
 (load! "email.el")
 
-(setq isabelle-dir "/home/robin/uni/fds/isabelle-emacs")
+(setq isabelle-dir "~/uni/fds/isabelle-emacs")
 
-(setq lsp-keep-workspace-alive nil)
+;; (setq lsp-keep-workspace-alive nil)
+
+(use-package! pkgbuild-mode :mode ("/PKGBUILD$" . pkgbuild-mode))
+(after! corfu
+  (setq corfu-preview-current t
+        corfu-preselect 'first
+        tab-always-indent t))
+
+;; (keymap-unset evil-insert-state-map "TAB")
+
+(add-hook 'nix-mode-hook #'eglot-ensure)
+
+(setq sql-product 'postgres)
+
+(setq doom-fd-executable (executable-find "fd"))
+
+(setq typst-ts-watch-options "--open"
+      typst-ts-mode-enable-raw-blocks-highlight t)
+(with-eval-after-load 'eglot
+  (with-eval-after-load 'typst-ts-mode
+    (add-to-list 'eglot-server-programs '(typst-ts-mode . ("tinymist")))))
+
+(setq typst-preview-browser "default")
+(setq treesit-extra-load-path '("~/.config/emacs-tree-sitter/lib"))
+(add-hook 'typst-ts-mode #'eglot-ensure)

@@ -74,3 +74,11 @@
                                  :repo "RobinMarchart/json-in-place"))
 (package! chezmoi)
 
+(package! pkgbuild-mode)
+(package! tramp-nspawn)
+
+(package! typst-preview
+  :recipe (:host github :repo "havarddj/typst-preview.el"))
+
+(package! typst-ts-mode
+  :recipe (:host codeberg :repo "meow_king/typst-ts-mode"))
