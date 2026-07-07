@@ -195,9 +195,18 @@
 (setq typst-ts-watch-options "--open"
       typst-ts-mode-enable-raw-blocks-highlight t)
 (with-eval-after-load 'eglot
-  (with-eval-after-load 'typst-ts-mode
-    (add-to-list 'eglot-server-programs '(typst-ts-mode . ("tinymist")))))
+  (add-to-list 'eglot-server-programs '(typst-ts-mode . ("tinymist"))))
+                                      
 
 (setq typst-preview-browser "default")
 (setq treesit-extra-load-path '("~/.config/emacs-tree-sitter/lib"))
-(add-hook 'typst-ts-mode #'eglot-ensure)
+
+
+(setq-default eglot-workspace-configuration
+              '(:tinymist (:exportPdf "onSave" :projectResolution "lockDatabase")))
+
+(use-package! typst-ts-mode
+  :mode "\\.typ\\'"
+  :config (add-hook 'typst-ts-mode #'eglot-ensure))
+
+(use-package! nushell-ts-mode :mode "\\.nu\\'")
