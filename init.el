@@ -118,7 +118,7 @@
  (cc +lsp)                              ; C/C++/Obj-C madness
  ;;clojure           ; java with a lisp
  ;; common-lisp                    ; if you've seen one lisp, you've seen them all
- coq                             ; proofs-as-programs
+ ;; coq                             ; proofs-as-programs
  ;;crystal           ; ruby at the speed of c
  (csharp +dotnet +lsp)
  ;;                                        ; unity, .NET, and mono shenanigans
