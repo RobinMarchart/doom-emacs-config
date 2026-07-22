@@ -152,7 +152,7 @@
  (lean +lsp)
  ;;ledger            ; an accounting system in Emacs
  (lua +lsp)                             ; one-based indices? one-based indices
- (markdown +grip +tree-sitter)          ; writing docs for people to ignore
+ (markdown +grip)          ; writing docs for people to ignore
  (nix +lsp)                             ; I hereby declare "nix geht mehr!"
  ;; ocaml                                  ; an objective camel
  (org +dragndrop +gnuplot +jupyter +pandoc +present +pretty +roam)
