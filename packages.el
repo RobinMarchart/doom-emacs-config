@@ -55,25 +55,7 @@
 (package! systemd)
 (package! elcord)
 (package! toml-mode)
-(package! native-async-rs :recipe (:type git
-                                   :host github
-                                   :repo "RobinMarchart/emacs-native-async"
-                                   :flavor melpa
-                                   :files ("*" (:exclude ".gitignore" "target*" "LICENSE"))))
-
-
-
-(package! dice-roll :recipe (:type git
-                             :host github
-                             :repo "RobinMarchart/emacs-dice-roll"
-                             :flavor melpa
-                             :files ("*" (:exclude ".gitignore" "target*" "LICENSE"))))
-
-(package! json-in-place :recipe (:type git
-                                 :host github
-                                 :repo "RobinMarchart/json-in-place"))
 (package! chezmoi)
-
 (package! pkgbuild-mode)
 (package! tramp-nspawn)
 
