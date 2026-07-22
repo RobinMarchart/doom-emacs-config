@@ -199,9 +199,6 @@
 
 
 (setq typst-preview-browser "default")
-(setq treesit-extra-load-path '("~/.config/emacs-native-deps/tree-sitter"))
-(setq ghostel-module-directory "~/.config/emacs-native-deps/ghostel")
-(setq pdf-info-epdfinfo-program "~/.config/emacs-native-deps/pdf-tools/epdfinfo")
 
 
 (setq-default eglot-workspace-configuration
