@@ -24,7 +24,6 @@
         {
           pkgs,
           emacs,
-          localDir,
         }:
         let
           extraPackages = epkgs: [
@@ -76,7 +75,7 @@
           ];
           args = {
             doomDir = ./.;
-            doomLocalDir = localDir;
+            doomLocalDir = "~/.local/share/nix-doom-unstraightened";
             profileName = "nix";
             experimentalFetchTree = true;
             inherit extraPackages extraBinPackages emacs;
@@ -87,32 +86,26 @@
         (nix-doom-emacs-unstraightened.lib.doomFromPackages pkgs args).emacsWithDoom;
     in
     {
-      hmModule = { config, ... }: {
-        nixpkgs.overlays = [
-          (final: prev: {
-            doom-emacs = mkDoom {
-              pkgs = final;
-              emacs = final.emacs;
-              localDir = "${config.xdg.dataHome}/nix-doom";
-            };
-            doom-emacs-nox = mkDoom {
-              pkgs = final;
-              emacs = final.emacs-nox;
-              localDir = "${config.xdg.dataHome}/nix-doom";
-            };
-            doom-emacs-gtk = mkDoom {
-              pkgs = final;
-              emacs = final.emacs-gtk;
-              localDir = "${config.xdg.dataHome}/nix-doom";
-            };
-            doom-emacs-pgtk = mkDoom {
-              pkgs = final;
-              emacs = final.emacs-pgtk;
-              localDir = "${config.xdg.dataHome}/nix-doom";
-            };
-          })
-        ];
-      };
+      overlays.default = (
+        final: prev: {
+          doom-emacs = mkDoom {
+            pkgs = final;
+            emacs = final.emacs;
+          };
+          doom-emacs-nox = mkDoom {
+            pkgs = final;
+            emacs = final.emacs-nox;
+          };
+          doom-emacs-gtk = mkDoom {
+            pkgs = final;
+            emacs = final.emacs-gtk;
+          };
+          doom-emacs-pgtk = mkDoom {
+            pkgs = final;
+            emacs = final.emacs-pgtk;
+          };
+        }
+      );
       packages = lib.genAttrs lib.systems.flakeExposed (
         system:
         let
@@ -122,22 +115,18 @@
           doom-emacs = mkDoom {
             inherit pkgs;
             emacs = pkgs.emacs;
-            localDir = "~/.local/share/nix-doom-unstraightened";
           };
           doom-emacs-nox = mkDoom {
             inherit pkgs;
             emacs = pkgs.emacs-nox;
-            localDir = "~/.local/share/nix-doom-unstraightened";
           };
           doom-emacs-gtk = mkDoom {
             inherit pkgs;
             emacs = pkgs.emacs-gtk;
-            localDir = "~/.local/share/nix-doom-unstraightened";
           };
           doom-emacs-pgtk = mkDoom {
             inherit pkgs;
             emacs = pkgs.emacs-pgtk;
-            localDir = "~/.local/share/nix-doom-unstraightened";
           };
         }
       );
