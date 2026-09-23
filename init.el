@@ -210,4 +210,3 @@
   (add-to-list 'doom-env-deny "SYSTEMD_EXEC_PID")
   (add-to-list 'doom-env-deny "MEMORY_PRESSURE_WRITE"))
 
-(autoload 'define-compilation-mode "compile" nil nil 'macro)
